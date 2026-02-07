@@ -348,77 +348,6 @@
             50% { border-color: #ff8fab; }
         }
         
-        /* Photo frame */
-        .photo-frame {
-            width: 200px;
-            height: 200px;
-            margin: 30px auto;
-            border: 8px solid #ff8fab;
-            border-radius: 15px;
-            background: linear-gradient(135deg, rgba(255, 182, 193, 0.1), rgba(255, 105, 180, 0.2));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-        
-        .photo-frame::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(45deg, transparent, rgba(255, 182, 193, 0.1), transparent);
-            z-index: -1;
-        }
-        
-        .photo-placeholder {
-            font-size: 4rem;
-            color: rgba(255, 182, 193, 0.3);
-        }
-        
-        /* Music player */
-        .music-player {
-            margin: 30px auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            max-width: 400px;
-            border: 1px solid rgba(255, 182, 193, 0.2);
-        }
-        
-        .music-player h4 {
-            color: #ffb3c6;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-        
-        .music-controls {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            align-items: center;
-        }
-        
-        .music-btn {
-            background: rgba(255, 182, 193, 0.2);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            color: #ffb3c6;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .music-btn:hover {
-            background: rgba(255, 182, 193, 0.4);
-            transform: scale(1.1);
-        }
     </style>
 </head>
 <body>
@@ -436,13 +365,7 @@
             <i class="far fa-calendar"></i> 14 Februari 2026
         </div>
         
-        <!-- Photo frame placeholder -->
-        <div class="photo-frame">
-            <div class="photo-placeholder">
-                <i class="fas fa-heart"></i>
-            </div>
-        </div>
-        
+       
         <!-- Timeline -->
         <div class="timeline">
             <div class="timeline-point">
@@ -471,23 +394,7 @@
             </div>
         </div>
         
-        <!-- Optional Music Player -->
-        <div class="music-player">
-            <h4><i class="fas fa-music"></i> Lagu Untuk Kita</h4>
-            <div class="music-controls">
-                <button class="music-btn" onclick="playMusic()">
-                    <i class="fas fa-play"></i>
-                </button>
-                <button class="music-btn" onclick="pauseMusic()">
-                    <i class="fas fa-pause"></i>
-                </button>
-                <button class="music-btn" onclick="stopMusic()">
-                    <i class="fas fa-stop"></i>
-                </button>
-            </div>
-            <p style="margin-top: 10px; font-size: 0.9rem; color: #ffb3c6;">Putar musik romantis untuk kita</p>
-        </div>
-        
+       
         <!-- Signature -->
         <div class="signature fade-in">
             <h3>From your lover</h3>
@@ -510,11 +417,7 @@
         <p>© 07 Februari 2026 - By theoyos</p>
     </footer>
 
-    <!-- Audio for music -->
-    <audio id="backgroundMusic" loop>
-        <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-sunset-687.mp3" type="audio/mpeg">
-        Browser Anda tidak mendukung elemen audio.
-    </audio>
+    
 
     <script>
         // DOM Elements
@@ -815,4 +718,5 @@
         }, 1500);
     </script>
 </body>
+
 </html>
