@@ -422,7 +422,7 @@
     <script>
         // DOM Elements
         const heartsContainer = document.getElementById('heartsContainer');
-        const backgroundMusic = document.getElementById('backgroundMusic');
+      
         
         // Create falling hearts
         function createHearts() {
@@ -467,26 +467,6 @@
             specialName.style.transform = `translateY(${floatAmount}px)`;
         }, 50);
         
-        // Music control functions
-        function playMusic() {
-            backgroundMusic.play().catch(e => {
-                console.log("Autoplay prevented. User interaction needed.");
-                // Fallback: show message to user
-                alert("Silakan klik tombol play sekali lagi untuk memutar musik.");
-            });
-            document.querySelector('.music-player p').textContent = "Musik romantis sedang diputar 💖";
-        }
-        
-        function pauseMusic() {
-            backgroundMusic.pause();
-            document.querySelector('.music-player p').textContent = "Musik dijeda";
-        }
-        
-        function stopMusic() {
-            backgroundMusic.pause();
-            backgroundMusic.currentTime = 0;
-            document.querySelector('.music-player p').textContent = "Putar musik romantis untuk kita";
-        }
         
         // Button functions
         function goToLandingPage() {
@@ -535,14 +515,7 @@
             `;
             document.body.appendChild(specialMessage);
             
-            // Play romantic sound if music is available
-            try {
-                const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-heartbeat-love-886.mp3');
-                audio.volume = 0.3;
-                audio.play();
-            } catch (e) {
-                console.log("Sound effect skipped");
-            }
+          
         }
         
         // Helper function for love hearts
@@ -720,3 +693,4 @@
 </body>
 
 </html>
+
