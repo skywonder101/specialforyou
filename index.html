@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Message For My Baby</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            color: #6a0c0c;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.92);
+            border-radius: 20px;
+            padding: 50px 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            border: 8px solid #ff6b93;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #d42a5e;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            color: #6a0c0c;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .heart-container {
+            margin: 40px 0;
+            position: relative;
+        }
+        
+        .heart {
+            font-size: 6rem;
+            color: #ff4d7e;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+        }
+        
+        .click-box {
+            background: linear-gradient(135deg, #fff0f3, #ffe8ec);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 3px dashed #ff7aa8;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .click-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .click-title {
+            font-size: 2.2rem;
+            color: #d42a5e;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .click-subtitle {
+            font-size: 1.2rem;
+            color: #6a0c0c;
+            margin-bottom: 25px;
+        }
+        
+        .open-btn {
+            display: inline-block;
+            background: linear-gradient(to right, #ff7aa8, #ff4d7e);
+            color: white;
+            padding: 18px 50px;
+            font-size: 1.6rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(255, 77, 126, 0.3);
+        }
+        
+        .open-btn:hover {
+            background: linear-gradient(to right, #ff4d7e, #ff2a5e);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(255, 77, 126, 0.4);
+        }
+        
+        .open-btn i {
+            margin-left: 10px;
+            animation: bounce 2s infinite;
+        }
+        
+        .instructions {
+            margin-top: 40px;
+            font-size: 1.1rem;
+            color: #6a0c0c;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .instructions i {
+            color: #ff4d7e;
+            margin: 0 10px;
+        }
+        
+        .hearts-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .heart-bg {
+            position: absolute;
+            color: rgba(255, 77, 126, 0.2);
+            font-size: 2rem;
+            animation: floatUp 15s linear infinite;
+        }
+        
+        /* Animations */
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+        
+        @keyframes floatUp {
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+            }
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.8rem; }
+            .subtitle { font-size: 1.2rem; }
+            .click-title { font-size: 1.8rem; }
+            .open-btn { padding: 15px 40px; font-size: 1.4rem; }
+            .container { padding: 40px 20px; }
+            .heart { font-size: 5rem; }
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 2.2rem; }
+            .subtitle { font-size: 1.1rem; }
+            .click-title { font-size: 1.6rem; }
+            .open-btn { padding: 15px 30px; font-size: 1.3rem; }
+            .container { padding: 30px 15px; }
+            .click-box { padding: 25px; }
+        }
+        
+        .footer {
+            margin-top: 30px;
+            color: #6a0c0c;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts-bg" id="heartsBg"></div>
+    
+    <div class="container">
+        <h1>A Special Message</h1>
+        
+        <div class="subtitle">
+            <p>There's something important I'd like to talk</p>
+            <p>It's about YOU💘</p>
+        </div>
+        
+        <div class="heart-container">
+            <div class="heart">
+                <i class="fas fa-heart"></i>
+            </div>
+        </div>
+        
+        <div class="click-box" onclick="openProposal()">
+            <div class="click-title">Click to Open the Message</div>
+            <div class="click-subtitle">I have a very important message for you</div>
+            <!-- PERUBAHAN PENTING: href="message.html" -->
+            <a href="message.html" class="open-btn" id="openBtn">
+                Open Message <i class="fas fa-envelope-open"></i>
+            </a>
+        </div>
+        
+        <div class="instructions">
+            <p><i class="fas fa-mouse-pointer"></i> Click the pink button above to see my special message</p>
+            <p><i class="fas fa-heart"></i> This page contains a surprise that I hope will make you smile</p>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Made with <i class="fas fa-heart" style="color:#ff4d7e;"></i> for Xing Xing</p>
+    </div>
+
+    <script>
+        // Create background hearts
+        function createBackgroundHearts() {
+            const heartsBg = document.getElementById('heartsBg');
+            
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                heart.classList.add('heart-bg');
+                
+                // Random position and animation duration
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                heart.style.opacity = Math.random() * 0.3 + 0.1;
+                heart.style.animationDuration = (Math.random() * 20 + 10) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                
+                heartsBg.appendChild(heart);
+            }
+        }
+        
+        // Initialize background hearts
+        createBackgroundHearts();
+        
+        // Add floating effect to the main heart
+        const mainHeart = document.querySelector('.heart');
+        setInterval(() => {
+            mainHeart.style.transform = `translateY(${Math.sin(Date.now()/500)*10}px)`;
+        }, 50);
+        
+        // Open proposal page function
+        function openProposal() {
+            const openBtn = document.getElementById('openBtn');
+            
+            // Add click effect
+            openBtn.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                openBtn.style.transform = 'scale(1)';
+            }, 150);
+            
+            // Create burst of hearts on click
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '<i class="fas fa-heart"></i>';
+                    heart.style.position = 'fixed';
+                    heart.style.color = '#ff4d7e';
+                    heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.top = '50%';
+                    heart.style.zIndex = '1000';
+                    heart.style.opacity = '0.8';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.transform = 'translate(-50%, -50%)';
+                    
+                    // Add animation
+                    heart.style.animation = `burst ${Math.random() * 1 + 1}s forwards`;
+                    
+                    document.body.appendChild(heart);
+                    
+                    // Remove heart after animation
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 1000);
+                }, i * 100);
+            }
+            
+            // CSS for burst animation
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes burst {
+                    0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+                    50% { opacity: 0.8; }
+                    100% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 100}px) scale(1.5); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // PERUBAHAN PENTING: ke "message.html" bukan "proposal.html"
+            setTimeout(() => {
+                window.location.href = "message.html";
+            }, 1200);
+        }
+        
+        // If user clicks anywhere in the click box, trigger the function
+        document.querySelector('.click-box').addEventListener('click', openProposal);
+        
+        // Add some interactivity to the page
+        document.addEventListener('mousemove', (e) => {
+            const hearts = document.querySelectorAll('.heart-bg');
+            hearts.forEach(heart => {
+                const x = (e.clientX / window.innerWidth) * 10;
+                const y = (e.clientY / window.innerHeight) * 10;
+                heart.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+    </script>
+</body>
+</html>

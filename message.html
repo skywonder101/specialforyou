@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Kamu, Lukrenzia Vichelyn</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 25px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b9d, #ff8fab, #ffb3c6);
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #ffb3c6;
+            margin-bottom: 30px;
+            text-shadow: 0 0 15px rgba(255, 182, 193, 0.5);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff8fab, transparent);
+        }
+        
+        .date-label {
+            display: inline-block;
+            background: rgba(255, 105, 180, 0.2);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            margin-bottom: 40px;
+            color: #ffb3c6;
+            border: 1px solid rgba(255, 105, 180, 0.4);
+        }
+        
+        .message-container {
+            text-align: left;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            border-left: 5px solid #ff6b9d;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .message-container::before {
+            content: '"';
+            position: absolute;
+            top: -30px;
+            left: 20px;
+            font-size: 8rem;
+            color: rgba(255, 105, 180, 0.1);
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .message {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            color: #e6e6e6;
+            text-align: justify;
+        }
+        
+        .highlight {
+            color: #ffb3c6;
+            font-weight: 600;
+            text-shadow: 0 0 5px rgba(255, 182, 193, 0.3);
+        }
+        
+        .special-name {
+            color: #ff8fab;
+            font-weight: 700;
+            font-size: 1.4rem;
+            text-shadow: 0 0 10px rgba(255, 143, 171, 0.5);
+            position: relative;
+            display: inline-block;
+            padding: 0 5px;
+        }
+        
+        .special-name::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #ff8fab;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s;
+        }
+        
+        .special-name:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .signature {
+            margin-top: 50px;
+            text-align: right;
+            font-style: italic;
+            color: #ffb3c6;
+            border-top: 1px dashed rgba(255, 105, 180, 0.3);
+            padding-top: 20px;
+        }
+        
+        .signature h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .signature p {
+            font-size: 1.2rem;
+        }
+        
+        .hearts-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .heart {
+            position: absolute;
+            color: rgba(255, 105, 180, 0.15);
+            font-size: 1.8rem;
+            animation: falling linear forwards;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 16px 35px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 160px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .back-btn {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+        }
+        
+        .valentine-btn {
+            background: linear-gradient(to right, #ff6b9d, #ff8fab);
+            color: white;
+        }
+        
+        button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .back-btn:hover {
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+        }
+        
+        .valentine-btn:hover {
+            background: linear-gradient(to right, #ff8fab, #ff6b9d);
+        }
+        
+        footer {
+            margin-top: 40px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Animations */
+        @keyframes falling {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        /* Timeline styling */
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0;
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b9d, #ff8fab, #ffb3c6);
+            z-index: 1;
+        }
+        
+        .timeline-point {
+            background: #0f3460;
+            border: 3px solid #ff8fab;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .timeline-date {
+            position: absolute;
+            top: 40px;
+            color: #ffb3c6;
+            font-weight: 600;
+        }
+        
+        /* Love letter effect */
+        .love-letter {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #ff8fab;
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.8rem; }
+            .message { font-size: 1.1rem; line-height: 1.7; }
+            .message-container { padding: 30px 20px; }
+            .container { padding: 40px 25px; }
+            .buttons { gap: 20px; }
+            .signature h3 { font-size: 2rem; }
+            .timeline-date { font-size: 0.9rem; }
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 2.3rem; }
+            .message { font-size: 1rem; }
+            .message-container { padding: 25px 15px; }
+            .container { padding: 30px 20px; }
+            button { padding: 14px 25px; font-size: 1.1rem; min-width: 140px; }
+            .buttons { flex-direction: column; align-items: center; }
+            .timeline { flex-direction: column; height: 200px; }
+            .timeline::before { width: 3px; height: 100%; left: 50%; transform: translateX(-50%); }
+            .timeline-date { position: relative; top: 0; margin-top: 10px; }
+        }
+        
+        /* Typewriter effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #ff8fab;
+            white-space: normal;
+            margin: 0 auto;
+            animation: typing 3.5s steps(100, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #ff8fab; }
+        }
+        
+        /* Photo frame */
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            margin: 30px auto;
+            border: 8px solid #ff8fab;
+            border-radius: 15px;
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.1), rgba(255, 105, 180, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .photo-frame::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, transparent, rgba(255, 182, 193, 0.1), transparent);
+            z-index: -1;
+        }
+        
+        .photo-placeholder {
+            font-size: 4rem;
+            color: rgba(255, 182, 193, 0.3);
+        }
+        
+        /* Music player */
+        .music-player {
+            margin: 30px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            max-width: 400px;
+            border: 1px solid rgba(255, 182, 193, 0.2);
+        }
+        
+        .music-player h4 {
+            color: #ffb3c6;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .music-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .music-btn {
+            background: rgba(255, 182, 193, 0.2);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: #ffb3c6;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .music-btn:hover {
+            background: rgba(255, 182, 193, 0.4);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts-container" id="heartsContainer"></div>
+    
+    <div class="container fade-in">
+        <!-- Love letter icon -->
+        <div class="love-letter">
+            <i class="fas fa-heart"></i>
+        </div>
+        
+        <h1>Untuk Kamu, Sayangku</h1>
+        
+        <div class="date-label">
+            <i class="far fa-calendar"></i> 14 Februari 2026
+        </div>
+        
+        <!-- Photo frame placeholder -->
+        <div class="photo-frame">
+            <div class="photo-placeholder">
+                <i class="fas fa-heart"></i>
+            </div>
+        </div>
+        
+        <!-- Timeline -->
+        <div class="timeline">
+            <div class="timeline-point">
+                <div class="timeline-date">Sept 2025</div>
+            </div>
+            <div class="timeline-point">
+                <div class="timeline-date" style="top: -40px;">Hari Ini</div>
+            </div>
+            <div class="timeline-point">
+                <div class="timeline-date">Selamanya</div>
+            </div>
+        </div>
+        <br>
+        <!-- Message Container -->
+        <div class="message-container fade-in">
+            <div class="message">
+                <p>Pada <span class="highlight">September 2025</span> adalah pertama kalinya kita berkomunikasi, dan awalnya sama sekali aku tak berniat menyukaimu. Namun waktu berlalu begitu cepat, sampai menjadikan kita seperti sekarang.</p>
+                
+                <p>Percayalah sayang, bertemu dan menjalin hubungan sama kamu itu, gapernah terlintas di otakku. Tapi aku mencoba membawa Tuhanku untuk bertanya apakah kamu orang yang tepat untuk aku. Dan akhirnya aku bisa sesayang ini sama kamu.</p>
+                
+                <p>Web ini aku buat pada tanggal <span class="highlight">07/02/2026</span>, untuk kamu. Iya, untuk kamu <span class="special-name">Lukrenzia Vichelyn</span>, seseorang yang aku gak pernah sangka jadi part terpenting didalam hidupku.</p>
+                
+                <p>Gak ada satu hari pun aku gak bersyukur kalo aku punya kamu. Semoga kedepan, kita bisa tetap terus bareng ya, sampe Tuhan mempersatukan kita sebagai keluarga.</p>
+                
+                <p>Thank you ya sayang, Happy Valentine Day, I love you.</p>
+            </div>
+        </div>
+        
+        <!-- Optional Music Player -->
+        <div class="music-player">
+            <h4><i class="fas fa-music"></i> Lagu Untuk Kita</h4>
+            <div class="music-controls">
+                <button class="music-btn" onclick="playMusic()">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="music-btn" onclick="pauseMusic()">
+                    <i class="fas fa-pause"></i>
+                </button>
+                <button class="music-btn" onclick="stopMusic()">
+                    <i class="fas fa-stop"></i>
+                </button>
+            </div>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #ffb3c6;">Putar musik romantis untuk kita</p>
+        </div>
+        
+        <!-- Signature -->
+        <div class="signature fade-in">
+            <h3>From your lover</h3>
+            <p>Theo Yosafat</p>
+        </div>
+        
+        <!-- Buttons -->
+        <div class="buttons">
+            <button class="back-btn" onclick="goToLandingPage()">
+                <i class="fas fa-home"></i> Kembali ke Awal
+            </button>
+            <button class="valentine-btn" onclick="createSpecialEffect()">
+                <i class="fas fa-heart"></i> Kirim Cinta
+            </button>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Pesan ini dibuat khusus untuk <span style="color:#ff8fab;">Lukrenzia Vichelyn</span></p>
+        <p>© 07 Februari 2026 - By theoyos</p>
+    </footer>
+
+    <!-- Audio for music -->
+    <audio id="backgroundMusic" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-sunset-687.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+
+    <script>
+        // DOM Elements
+        const heartsContainer = document.getElementById('heartsContainer');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        
+        // Create falling hearts
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '<i class="fas fa-heart"></i>';
+                    heart.classList.add('heart');
+                    
+                    // Random position and animation duration
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.fontSize = (Math.random() * 25 + 15) + 'px';
+                    heart.style.opacity = Math.random() * 0.3 + 0.1;
+                    heart.style.animationDuration = (Math.random() * 8 + 6) + 's';
+                    heart.style.color = `rgba(255, ${Math.random() * 100 + 100}, ${Math.random() * 100 + 150}, ${Math.random() * 0.3 + 0.2})`;
+                    
+                    heartsContainer.appendChild(heart);
+                    
+                    // Remove heart after animation completes
+                    setTimeout(() => {
+                        if (heart.parentNode) {
+                            heart.remove();
+                        }
+                    }, 15000);
+                }, i * 400);
+            }
+        }
+        
+        // Initialize hearts
+        createHearts();
+        
+        // Create more hearts every 10 seconds
+        setInterval(createHearts, 10000);
+        
+        // Add floating effect to special name
+        const specialName = document.querySelector('.special-name');
+        let floatOffset = 0;
+        
+        setInterval(() => {
+            floatOffset += 0.05;
+            const floatAmount = Math.sin(floatOffset) * 3;
+            specialName.style.transform = `translateY(${floatAmount}px)`;
+        }, 50);
+        
+        // Music control functions
+        function playMusic() {
+            backgroundMusic.play().catch(e => {
+                console.log("Autoplay prevented. User interaction needed.");
+                // Fallback: show message to user
+                alert("Silakan klik tombol play sekali lagi untuk memutar musik.");
+            });
+            document.querySelector('.music-player p').textContent = "Musik romantis sedang diputar 💖";
+        }
+        
+        function pauseMusic() {
+            backgroundMusic.pause();
+            document.querySelector('.music-player p').textContent = "Musik dijeda";
+        }
+        
+        function stopMusic() {
+            backgroundMusic.pause();
+            backgroundMusic.currentTime = 0;
+            document.querySelector('.music-player p').textContent = "Putar musik romantis untuk kita";
+        }
+        
+        // Button functions
+        function goToLandingPage() {
+            // Add transition effect
+            document.querySelector('.container').style.opacity = '0';
+            document.querySelector('.container').style.transform = 'translateY(30px)';
+            document.querySelector('.container').style.transition = 'all 0.5s ease';
+            
+            // Create exit hearts
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    createExitHeart();
+                }, i * 100);
+            }
+            
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 800);
+        }
+        
+        function createSpecialEffect() {
+            // Create heart explosion
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    createLoveHeart();
+                }, i * 50);
+            }
+            
+            // Show special message
+            const specialMessage = document.createElement('div');
+            specialMessage.innerHTML = `
+                <div style="position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); 
+                         background:rgba(0,0,0,0.8); color:#ffb3c6; padding:30px; 
+                         border-radius:20px; border:2px solid #ff8fab; z-index:2000;
+                         text-align:center; max-width:400px; animation:fadeIn 0.5s;">
+                    <h3 style="font-family:'Dancing Script'; font-size:2rem; margin-bottom:15px;">
+                        <i class="fas fa-heart"></i> Untuk Lukrenzia Vichelyn <i class="fas fa-heart"></i>
+                    </h3>
+                    <p style="margin-bottom:20px;">Cintaku selalu untukmu, sekarang dan selamanya ❤️</p>
+                    <button onclick="this.parentElement.remove()" style="
+                        background:#ff8fab; color:white; border:none; padding:10px 25px;
+                        border-radius:25px; cursor:pointer; font-weight:bold;">
+                        Tutup
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(specialMessage);
+            
+            // Play romantic sound if music is available
+            try {
+                const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-heartbeat-love-886.mp3');
+                audio.volume = 0.3;
+                audio.play();
+            } catch (e) {
+                console.log("Sound effect skipped");
+            }
+        }
+        
+        // Helper function for love hearts
+        function createLoveHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '<i class="fas fa-heart"></i>';
+            heart.style.position = 'fixed';
+            heart.style.color = '#ff6b9d';
+            heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '50%';
+            heart.style.zIndex = '1000';
+            heart.style.opacity = '0.9';
+            heart.style.pointerEvents = 'none';
+            heart.style.transform = 'translate(-50%, -50%)';
+            heart.style.textShadow = '0 0 10px rgba(255, 107, 157, 0.7)';
+            
+            // Add animation
+            heart.style.animation = `loveBurst ${Math.random() * 1.5 + 1}s forwards`;
+            
+            document.body.appendChild(heart);
+            
+            // Remove heart after animation
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    heart.remove();
+                }
+            }, 1500);
+        }
+        
+        // Helper function for exit hearts
+        function createExitHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '<i class="fas fa-heart"></i>';
+            heart.style.position = 'fixed';
+            heart.style.color = '#2575fc';
+            heart.style.fontSize = (Math.random() * 25 + 15) + 'px';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '50%';
+            heart.style.zIndex = '1000';
+            heart.style.opacity = '0.7';
+            heart.style.pointerEvents = 'none';
+            heart.style.transform = 'translate(-50%, -50%)';
+            
+            heart.style.animation = `exitHeart ${Math.random() * 1 + 0.5}s forwards`;
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    heart.remove();
+                }
+            }, 1000);
+        }
+        
+        // Add some initial effects on page load
+        window.addEventListener('load', function() {
+            // Add typewriter effect to the first paragraph
+            const firstParagraph = document.querySelector('.message p:first-child');
+            firstParagraph.classList.add('typewriter');
+            
+            // Create welcome hearts
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '<i class="fas fa-heart"></i>';
+                    heart.style.position = 'fixed';
+                    heart.style.color = '#ff8fab';
+                    heart.style.fontSize = (Math.random() * 25 + 15) + 'px';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.top = '100%';
+                    heart.style.zIndex = '1000';
+                    heart.style.opacity = '0.7';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.animation = `welcomeHeart ${Math.random() * 3 + 2}s forwards`;
+                    
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        if (heart.parentNode) {
+                            heart.remove();
+                        }
+                    }, 5000);
+                }, i * 200);
+            }
+            
+            // Show welcome message
+            setTimeout(() => {
+                const welcomeMsg = document.createElement('div');
+                welcomeMsg.innerHTML = `
+                    <div style="position:fixed; top:20px; left:50%; transform:translateX(-50%); 
+                             background:rgba(255, 182, 193, 0.9); color:#0f3460; padding:15px 30px; 
+                             border-radius:50px; border:2px solid #ff8fab; z-index:2000;
+                             font-weight:bold; animation:fadeInOut 3s forwards;">
+                        💝 Selamat membaca, Lukrenzia! 💝
+                    </div>
+                `;
+                document.body.appendChild(welcomeMsg);
+                
+                setTimeout(() => {
+                    if (welcomeMsg.parentNode) {
+                        welcomeMsg.remove();
+                    }
+                }, 3000);
+            }, 1000);
+        });
+        
+        // Add interactive cursor hearts
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.93) { // 7% chance to create a heart
+                const heart = document.createElement('div');
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                heart.style.position = 'fixed';
+                heart.style.color = '#ff8fab';
+                heart.style.fontSize = '18px';
+                heart.style.left = e.clientX + 'px';
+                heart.style.top = e.clientY + 'px';
+                heart.style.zIndex = '1000';
+                heart.style.opacity = '0.7';
+                heart.style.pointerEvents = 'none';
+                heart.style.transform = 'translate(-50%, -50%)';
+                heart.style.animation = 'cursorHeart 1.5s forwards';
+                
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    if (heart.parentNode) {
+                        heart.remove();
+                    }
+                }, 1500);
+            }
+        });
+        
+        // Add custom animations to style
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes welcomeHeart {
+                0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+                100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+            }
+            
+            @keyframes cursorHeart {
+                0% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+                100% { transform: translate(-50%, -50%) scale(0) translateY(-30px); opacity: 0; }
+            }
+            
+            @keyframes loveBurst {
+                0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+                50% { opacity: 0.9; }
+                100% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 150}px) scale(1.8); opacity: 0; }
+            }
+            
+            @keyframes exitHeart {
+                0% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+                100% { transform: translate(${Math.random() * 100 - 50}px, -100px) scale(0.5); opacity: 0; }
+            }
+            
+            @keyframes fadeInOut {
+                0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+                20% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                80% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Auto-scroll to message after load
+        setTimeout(() => {
+            document.querySelector('.message-container').scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }, 1500);
+    </script>
+</body>
+</html>
